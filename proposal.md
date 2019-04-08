@@ -19,7 +19,7 @@ We obtain 20,000 available adoptable animal data from nearly 14,000 shelters and
 
 Sample Data:
 
-![Available cats(img/cats-json-raw.png)
+![Available cats](img/cats-json-raw.png)
 ![Cost of ownership](img/costs.png)
 
 
