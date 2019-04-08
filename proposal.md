@@ -1,10 +1,10 @@
 # Proposal #
 Team: Petmatchers  
-Team Members: Andrew B, Helen, Jin, Natalie, Srini, Troy
+Team Members: Andrew B, Helen, Jin, Natalie, Srini, Troy  
+Project file: https://github.com/jinkkim/project2_petmatchers
 
 ## Problem statement ##
-Animal adoption is a big decision for a family. 
-
+Animal adoption is a big decision for a family.  
 Many families use online resources to learn about potential pets, but the actual decision for adoption remains an emotional one. This can lead to underestimation of annual costs of care or pet temperament, and in extreme situations, lead to animals being returned to shelters.
 
 Petmatchers provides a unique visualization experience to help families make data-driven decisions when researching or considering a particular animal. Using data from the Petfinder API, users can find a match based on their preference such as breed, age, gender, color, temperament, location, while visualizing available available animals by category. 
@@ -17,13 +17,21 @@ https://www.petfinder.com/developers/v2/docs/
 https://www.aspca.org/sites/default/files/pet_care_costs.pdf
 https://www.bls.gov/opub/ted/2017/households-spent-an-average-of-528-dollars-on-pets-in-2015.htm
 
-Snapshots of the data
+Sample Data:
+
+![Available cats(img/cats-json-raw.png)
+![Cost of ownership](img/costs.png)
+
 
 ## Page layout ##
 One main page and four subpages
-- HOME: intro, background
+-	HOME: intro, background
 -	FIND A PET: provide search features with users’ preferences
 -	OVERVIEW: adoptable animal analysis, report of available animals
 -	MAPS: Where are adoptable animals located? Where can I meet them?
 -	PET CARE COSTS ANALYSIS: the cost of owning a dog or cat
 
+Example page:
+
+
+![Not a wireframe](img/wireframe.png)
