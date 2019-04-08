@@ -13,9 +13,9 @@ The Petmatchers online utility also displays pet care costs and other expenditur
 
 ## Dataset ##
 We obtain 20,000 available adoptable animal data from nearly 14,000 shelters and rescue groups across North America from Petfinder API. We also collected initial and lifetime pet care cost data by animal, size and breed from various sources.
-https://www.petfinder.com/developers/v2/docs/
-https://www.aspca.org/sites/default/files/pet_care_costs.pdf
-https://www.bls.gov/opub/ted/2017/households-spent-an-average-of-528-dollars-on-pets-in-2015.htm
+ - https://www.petfinder.com/developers/v2/docs/
+ - https://www.aspca.org/sites/default/files/pet_care_costs.pdf
+ - https://www.bls.gov/opub/ted/2017/households-spent-an-average-of-528-dollars-on-pets-in-2015.htm
 
 Sample Data:
 
