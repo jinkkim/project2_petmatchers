@@ -4,7 +4,7 @@ import pandas
 import numpy
 import sqlalchemy
 
-from flask import Flask, jsonify
+from flask import Flask, render_template, jsonify
 
 
 app = Flask(__name__)
@@ -18,20 +18,23 @@ app = Flask(__name__)
 #session = Session(engine)
 
 @app.route("/")
-def home():
-	return index.html
+def index():
+	return render_template("index.html")
 
 
 
 
 @app.route("/find")
 def find():
-	return find.html
+	return render_template("find.html")
 
 
 
 @app.route("/information")
 def info():
-	return information.html
+	return render_template("information.html")
 
 
+
+if __name__ == "__main__":
+    app.run(debug=True)
