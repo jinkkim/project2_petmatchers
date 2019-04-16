@@ -23,3 +23,27 @@ body {
 }
 
 .header { padding-bottom: 10px; }
+
+.filter-header {
+	padding: 5px;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.card {
+	border: none;
+	padding: 5px;
+
+}
+
+.filter-body {
+	padding: 0px;
+}
+
+.card-header {
+	border: none;
+	font-weight: bold;
+	
+}
+
+
