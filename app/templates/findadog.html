@@ -47,16 +47,23 @@
 <!-- From 15 -> 2 -> 01 -->
 
   <!-- UPDATE contents here -->
+
+
 <div class="container">
 	<div class="row text-center">
 		<div class="col">
       <img src="static/images/happyfamilydog.png" class="img img-responsive">
     </div>
   </div>
+
+<!-- filters -->
+<!-- If we need to do these as JS dropdown selectors, do something like -->
+<!--  d3.select("filterBreed").append("option")  -->
+
 	<div id="filters" class="row text-center">
     <div class="col-sm">
 		    <div class="card">
-          <h5 class="card-header">Breed</h5>
+          <h5 class="card-header filter-header">Breed</h5>
           <div class="card-body" id="filterBreed">
 		          <select id="selectBreed" onchange="someFunction(this.value)">
         	        <option value="Breed1">Breed 1</option>
@@ -68,10 +75,10 @@
     </div>
     <div class="col-sm">
 		    <div class="card">
-      <h5 class="card-header">Age</h5>
-      <div class="card-body" id="filterAge">
+          <h5 class="card-header filter-header">Age</h5>
+            <div class="card-body" id="filterAge">
             <select id="selectBreed" onchange="someFunction(this.value)">
-              <option value="young">Puppers</option>
+              <option value="young">Pupper</option>
               <option value="adult">Doge</option>
               <option value="senior">The Goodest Boy</option>
             </select>
@@ -80,8 +87,8 @@
     </div>
     <div class="col-sm">
 		    <div class="card">
-      <h5 class="card-header">Size</h5>
-      <div class="card-body" id="filterSize">
+          <h5 class="card-header filter-header">Size</h5>
+            <div class="card-body" id="filterSize">
             <select id="selectBreed" onchange="someFunction(this.value)">
               <option value="small">Small</option>
               <option value="medium">Medium</option>
@@ -92,20 +99,20 @@
     </div>
     <div class="col-sm">
 		    <div class="card">
-      <h5 class="card-header">Gender</h5>
-      <div class="card-body" id="filterBreed">
+          <h5 class="card-header filter-header">Gender</h5>
+            <div class="card-body" id="filterGender">
             <select id="selectBreed" onchange="someFunction(this.value)">
               <option value="male">Male</option>
               <option value="female">Female</option>
-              <option ealue="apache-helicopter">Apache Helicopter</option>
+              <option value="fluid">Gender Fluid</option>
             </select>
           </div>
         </div>
     </div>
     <div class="col-sm">
 		    <div class="card">
-      <h5 class="card-header">Good with</h5>
-      <div class="card-body" id="filterGoodWith">
+          <h5 class="card-header filter-header">Good with</h5>
+            <div class="card-body" id="filterGoodWith">
             <select id="selectBrfeed" onchange="someFunction(this.value)">
               <option value="this">This</option>
               <option value="that">That</option>
@@ -115,6 +122,12 @@
         </div>
     </div>
   </div>
+
+  <!-- animals -->
+  <!-- uses col-sm-3 breakpoints (four per row, and then one per row at small screens)-->
+  <!-- use as template for JS insertion only -->
+  <!-- Starter IDs are included. Feel free to change according to JS needs -->
+
 	<div class="row text-center">
     <div class="col-sm-3">
       <div class="card text-center">
