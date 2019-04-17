@@ -46,15 +46,75 @@ def cost():
     cost_data = dumps(db_cost.find())
     return render_template("cost.html", cost_data = cost_data)
 
+dog_stats = { 
+    'breed': {
+        'lab': 4,
+        'golden_retriver': 5,  
+        'cocker_spaniel': 7,  
+        'mixed': 29
+    },  
+    'age': {
+        'baby': 1,
+        'young': 2,
+        'adult': 3,  
+        'senior': 5
+    },  
+    'size': {
+        'small': 5,
+        'medium': 4,
+        'large': 4,  
+        'x-large': 2
+    },  
+    'gender': {
+        'male': 6,
+        'female': 4
+    },  
+    'color': {
+        'white': None,
+        'black': 5,
+        'brown': 4,
+        'gray': 7
+    }   
+} 
     
+cat_facts = {
+    'breed': {
+        'Maine Coone': 4,
+        'Siamese': 5,
+        'Bengal': 7,
+        'Mixed': 29
+    },
+    'age': {
+        'baby': 1,
+        'young': 2,
+        'adult': 3,
+        'senior': 5
+    },
+    'size': {
+        'small': 5,
+        'medium': 4,
+        'large': 4,
+        'x-large': 2
+    },
+    'gender': {
+        'male': 6,
+        'female': 4
+    },
+    'color': {
+        'white': None,
+        'black': 5,
+        'brown': 4,
+        'gray': 7
+    }
+}
+
 @app.route("/aboutdogs")
 def about_dog():
-
-    return render_template("aboutdogs.html")
+    return render_template("aboutdogs.html", dog_stats=dog_stats)
 
 @app.route("/aboutcats")
 def about_cat():
-    return render_template("aboutcats.html")
+    return render_template("aboutcats.html", cat_facts=cat_facts)
 
 
 
