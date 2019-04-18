@@ -51,13 +51,13 @@ def cost():
 @app.route("/dogdata")
 def dog_data():
     dogs = list(db_dogData.find().limit(100))
-    dog_stats = dumps(get_doge(dogs))
+    dog_stats = get_doge(dogs)
     return jsonify(dog_stats)
 
 @app.route("/catdata")
 def cat_data():
     cats = list(db_catData.find().limit(100))
-    cat_facts = dumps(get_kitteh(cats))
+    cat_facts = get_kitteh(cats)
     return jsonify(cat_facts)
 
 @app.route("/aboutdogs")
