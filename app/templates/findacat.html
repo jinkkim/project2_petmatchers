@@ -43,14 +43,138 @@
         </div>
       </nav>
 
-  <!-- UPDATE contents here -->
-  <div class="container">
-    <div class="m-4">
-      <img src="../static/images/adoptadog.png" alt="" width="886">
-    </div>
 
+<!-- From 15 -> 2 -> 01 -->
+
+  <!-- UPDATE contents here -->
+
+
+<div class="container">
+	<div class="row text-center">
+		<div class="col">
+      <img src="static/images/kitteh.jpg" class="img img-responsive">
+    </div>
   </div>
 
+<!-- filters -->
+<!-- If we need to do these as JS dropdown selectors, do something like -->
+<!--  d3.select("filterBreed").append("option")  -->
+
+	<div id="filters" class="row text-center">
+    <div class="col-sm">
+		    <div class="card">
+          <h5 class="card-header filter-header">Breed</h5>
+          <div class="card-body filter-body" id="filterBreed">
+		          <select id="selectBreed" class="custom-select custom-select-sm" onchange="someFunction(this.value)">
+        	        <option value="Breed1">Breed 1</option>
+        	        <option value="Breed2">Breed 2</option>
+        	        <option ealue="Breed3">Breed 3</option>
+              </select>
+          </div>
+        </div>
+    </div>
+    <div class="col-sm">
+		    <div class="card">
+          <h5 class="card-header filter-header">Age</h5>
+            <div class="card-body filter-body" id="filterAge">
+            <select id="selectAge" class="custom-select custom-select-sm" onchange="someFunction(this.value)">
+              <option value="young">Pupper</option>
+              <option value="adult">Doge</option>
+              <option value="senior">The Goodest Boy</option>
+            </select>
+          </div>
+        </div>
+    </div>
+    <div class="col-sm">
+		    <div class="card">
+          <h5 class="card-header filter-header">Size</h5>
+            <div class="card-body filter-body" id="filterSize">
+            <select id="selectSize" class="custom-select custom-select-sm" onchange="someFunction(this.value)">
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option ealue="large">Large</option>
+            </select>
+          </div>
+        </div>
+    </div>
+    <div class="col-sm">
+		    <div class="card">
+          <h5 class="card-header filter-header">Gender</h5>
+            <div class="card-body filter-body" id="filterGender">
+            <select id="selectGender" class="custom-select custom-select-sm" onchange="someFunction(this.value)">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="fluid">Gender Fluid</option>
+            </select>
+          </div>
+        </div>
+    </div>
+    <div class="col-sm">
+		    <div class="card">
+          <h5 class="card-header filter-header">Good with</h5>
+            <div class="card-body filter-body" id="filterGoodWith">
+            <select id="selectGoodWidth" class="custom-select custom-select-sm" onchange="someFunction(this.value)">
+              <option value="this">This</option>
+              <option value="that">That</option>
+              <option ealue="theother">The Other</option>
+            </select>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- animals -->
+  <!-- uses col-sm-3 breakpoints (four per row, and then one per row at small screens)-->
+  <!-- use as template for JS insertion only -->
+  <!-- Starter IDs are included. Feel free to change according to JS needs -->
+
+	<div class="row text-center">
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <div class="card-img-top" id="kittehpic">
+          <img src="static/images/kittehpic.jpg" style="width:100%" class="img img-responsive">
+        </div>
+        <div class="card-body" id="kittehinfo">
+        <p>Doge</p>
+        <p><a href="#">Doge Shelter URL</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <div class="card-img-top" id="kittehpic">
+        <img src="static/images/kittehpic.jpg" style="width:100%" class="img img-responsive">
+        </div>
+        <div class="card-body" id="kittehinfo">
+        <p>Doge</p>
+        <p><a href="#">Doge Shelter URL</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <div class="card-img-top" id="kittehpic">
+        <img src="static/images/kittehpic.jpg" style="width:100%" class="img img-responsive">
+        </div>
+        <div class="card-body" id="kittehinfo">
+        <p>Doge</p>
+        <p><a href="#">Doge Shelter URL</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <div class="card-img-top" id="kittehpic">
+        <img src="static/images/kittehpic.jpg" style="width:100%" class="img img-responsive">
+        </div>
+        <div class="card-body" id="kittehinfo">
+        <p>Doge</p>
+        <p><a href="#">Doge Shelter URL</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
