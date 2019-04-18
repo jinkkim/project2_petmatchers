@@ -77,6 +77,57 @@ def get_doge():
                 dog_stats['color'][key] = 1
     return dog_stats
 
+def get_kitteh():
+    cat_facts = {
+        'breed': {},
+        'age': {},
+        'size': {},
+        'gender': {},
+        'color': {}
+    }
+    kittehz = list(db_catData.find().limit(100))
+    for kitteh in kittehz:
+        #print(pupper)
+        if (kitteh['breed']):
+            #print('Breed:' + pupper['breed'])
+            key = kitteh['breed']
+            #print(key)
+            if key in cat_facts['breed']:
+                cat_facts['breed'][key] += 1
+            else:
+                cat_facts['breed'][key] = 1
+            #do the same for age
+        if (kitteh['age']):
+            key = kitteh['age']
+            if key in cat_facts['age']:
+                cat_facts['age'][key] += 1
+            else:
+                cat_facts['age'][key] = 1
+
+        #do the same for size
+        if (kitteh['size']):
+            key = kitteh['size']
+            if key in cat_facts['size']:
+                cat_facts['size'][key] += 1
+            else:
+                cat_facts['size'][key] = 1
+
+        #do the same for gender
+        if (kitteh['gender']):
+            key = kitteh['gender']
+            if key in cat_facts['gender']:
+                cat_facts['gender'][key] += 1
+            else:
+                cat_facts['gender'][key] = 1
+
+    #do the same for color
+        if (kitteh['color']):
+            key = kitteh['color']
+            if key in cat_facts['color']:
+                cat_facts['color'][key] += 1
+            else:
+                cat_facts['color'][key] = 1
+    return cat_facts
 
 @app.route("/")
 def index():
@@ -103,12 +154,13 @@ def cost():
 
 @app.route("/aboutdogs")
 def about_dog():
-    dog_stats = get_doge()
+    dog_stats = dumps(get_doge())
     return render_template("aboutdogs.html", dog_stats=dog_stats)
     #return jsonify(dog_stats)
 
 @app.route("/aboutcats")
 def about_cat():
+    cat_facts = dumps(get_kitteh())
     return render_template("aboutcats.html", cat_facts=cat_facts)
 
 
