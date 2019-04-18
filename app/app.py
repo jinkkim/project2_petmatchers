@@ -8,7 +8,7 @@
 #from flask_sqlalchemy import SQLAlchemy
 
 from flask_pymongo import PyMongo
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from bson.json_util import dumps
 
 app = Flask(__name__)
@@ -23,6 +23,59 @@ mongo = PyMongo(app)
 db_dogData = mongo.db.dogs_by_page
 db_catData = mongo.db.cats_by_page
 db_cost = mongo.db.annual_costs
+
+
+def get_doge():
+    dog_stats = {
+        'breed': {},
+        'age': {},
+        'size': {},
+        'gender': {},
+        'color': {}
+    }
+    dogs = list(db_dogData.find().limit(100))
+    for pupper in dogs:
+        #print(pupper)
+        if (pupper['breed']):
+            #print('Breed:' + pupper['breed'])
+            key = pupper['breed']
+            #print(key)
+            if key in dog_stats['breed']:
+                dog_stats['breed'][key] += 1
+            else:
+                dog_stats['breed'][key] = 1
+            #do the same for age
+        if (pupper['age']):
+            key = pupper['age']
+            if key in dog_stats['age']:
+                dog_stats['age'][key] += 1
+            else:
+                dog_stats['age'][key] = 1
+
+        #do the same for size
+        if (pupper['size']):
+            key = pupper['size']
+            if key in dog_stats['size']:
+                dog_stats['size'][key] += 1
+            else:
+                dog_stats['size'][key] = 1
+
+        #do the same for gender
+        if (pupper['gender']):
+            key = pupper['gender']
+            if key in dog_stats['gender']:
+                dog_stats['gender'][key] += 1
+            else:
+                dog_stats['gender'][key] = 1
+
+    #do the same for color
+        if (pupper['color']):
+            key = pupper['color']
+            if key in dog_stats['color']:
+                dog_stats['color'][key] += 1
+            else:
+                dog_stats['color'][key] = 1
+    return dog_stats
 
 
 @app.route("/")
@@ -46,71 +99,13 @@ def cost():
     cost_data = dumps(db_cost.find())
     return render_template("cost.html", cost_data = cost_data)
 
-dog_stats = { 
-    'breed': {
-        'lab': 4,
-        'golden_retriver': 5,  
-        'cocker_spaniel': 7,  
-        'mixed': 29
-    },  
-    'age': {
-        'baby': 1,
-        'young': 2,
-        'adult': 3,  
-        'senior': 5
-    },  
-    'size': {
-        'small': 5,
-        'medium': 4,
-        'large': 4,  
-        'x-large': 2
-    },  
-    'gender': {
-        'male': 6,
-        'female': 4
-    },  
-    'color': {
-        'white': None,
-        'black': 5,
-        'brown': 4,
-        'gray': 7
-    }   
-} 
-    
-cat_facts = {
-    'breed': {
-        'Maine Coone': 4,
-        'Siamese': 5,
-        'Bengal': 7,
-        'Mixed': 29
-    },
-    'age': {
-        'baby': 1,
-        'young': 2,
-        'adult': 3,
-        'senior': 5
-    },
-    'size': {
-        'small': 5,
-        'medium': 4,
-        'large': 4,
-        'x-large': 2
-    },
-    'gender': {
-        'male': 6,
-        'female': 4
-    },
-    'color': {
-        'white': None,
-        'black': 5,
-        'brown': 4,
-        'gray': 7
-    }
-}
+
 
 @app.route("/aboutdogs")
 def about_dog():
+    dog_stats = get_doge()
     return render_template("aboutdogs.html", dog_stats=dog_stats)
+    #return jsonify(dog_stats)
 
 @app.route("/aboutcats")
 def about_cat():
