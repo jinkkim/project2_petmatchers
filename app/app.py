@@ -48,20 +48,26 @@ def cost():
     cost_data = dumps(db_cost.find())
     return render_template("cost.html", cost_data = cost_data)
 
+@app.route("/dogdata")
+def dog_data():
+    dogs = list(db_dogData.find().limit(100))
+    dog_stats = dumps(get_doge(dogs))
+    return jsonify(dog_stats)
 
+@app.route("/catdata")
+def cat_data():
+    cats = list(db_catData.find().limit(100))
+    cat_facts = dumps(get_kitteh(cats))
+    return jsonify(cat_facts)
 
 @app.route("/aboutdogs")
 def about_dog():
-    dogs = list(db_dogData.find().limit(100))
-    dog_stats = dumps(get_doge(dogs))
-    return render_template("aboutdogs.html", dog_stats=dog_stats)
+    return render_template("aboutdogs.html")
     #return jsonify(dog_stats)
 
 @app.route("/aboutcats")
 def about_cat():
-    cats = list(db_catData.find().limit(100))
-    cat_facts = dumps(get_kitteh(cats))
-    return render_template("aboutcats.html", cat_facts=cat_facts)
+    return render_template("aboutcats.html")
 
 
 
