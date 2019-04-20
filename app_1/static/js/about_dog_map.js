@@ -27,7 +27,7 @@ function drawMap(dog_population){
 
     var myMap = L.map("map_dog", {
       center: [40.13, -94.93],
-      zoom: 5
+      zoom: 4
     });
 
     L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {

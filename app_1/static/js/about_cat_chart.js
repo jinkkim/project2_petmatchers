@@ -1,61 +1,53 @@
 function drawPlot(cat_statistics){
 
-    var data = [
-        {
-        values: cat_statistics[1],
-        labels: cat_statistics[0],
-        domain: {column: 0},
-        name: 'breed',
-        hole: .4,
-        type: 'pie'
-        },
-        {
-        values: cat_statistics[3],
-        labels: cat_statistics[2],
-        domain: {column: 1},
-        name: 'age',
-        hole: .4,
-        type: 'pie'
-        },
-        {
-        values: cat_statistics[5],
-        labels: cat_statistics[4],
-        domain: {column: 2},
-        name: 'size',
-        hole: .4,
-        type: 'pie'
-        }]
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
 
-    var layout = {
-        title: 'Statistics for cats',
-        annotations: [
-            {
-              font: {size: 18},
-              showarrow: false,
-              text: 'Breed',
-              x: 0.12,
-              y: 0.5
-            },
-            {
-              font: {size: 18},
-              showarrow: false,
-              text: 'Age',
-              x: 0.5,
-              y: 0.5
-            },
-            {
-                font: {size: 18},
-                showarrow: false,
-                text: 'Size',
-                x: 0.88,
-                y: 0.5
-              }
-        ],
-        height: 400,
-        width: 1000,
-        showlegend: false,
-        grid: {rows: 1, columns: 3}
+  function drawChart() {
+    var data_breed = google.visualization.arrayToDataTable(cat_statistics[0]);
+    var options_breed = {
+      title: 'Adoptable Cats by Breed (Top 10)',
+      pieHole: 0.4,
+      width:500,
+      height:500,
+      legend:'none'
+    };
+    var chart_breed = new google.visualization.PieChart(document.getElementById('pie_breed_cat'));
+    chart_breed.draw(data_breed, options_breed);
 
-    }
-    Plotly.newPlot('pie_cat', data, layout); 
+    var data_age = google.visualization.arrayToDataTable(cat_statistics[1]);
+    var options_age = {
+      title: 'Age Distribution',
+      pieHole: 0.4,
+      width:500,
+      height:500,
+      legend:'none'
+    };
+    var chart_age = new google.visualization.PieChart(document.getElementById('pie_age_cat'));
+    chart_age.draw(data_age, options_age);
+
+    var data_size = google.visualization.arrayToDataTable(cat_statistics[2]);
+    var options_size = {
+      title: 'Size Distribution',
+      pieHole: 0.4,
+      width:500,
+      height:500,
+      legend:'none'
+    };
+    var chart_size = new google.visualization.PieChart(document.getElementById('pie_size_cat'));
+    chart_size.draw(data_size, options_size);
+
+    var data_color = google.visualization.arrayToDataTable(cat_statistics[2]);
+    var options_color = {
+      title: 'Color Distribution',
+      pieHole: 0.4,
+      width:500,
+      height:500,
+      legend:'none'
+    };
+    var chart_color = new google.visualization.PieChart(document.getElementById('pie_color_cat'));
+    chart_color.draw(data_color, options_color);
+
+  }
+
 }

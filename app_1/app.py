@@ -48,6 +48,47 @@ db_capital_cost = mongo.db.capital_costs
 def index():
     return render_template("index.html")
 
+
+@app.route('/search_this', methods = ['POST'])
+def search_this():
+
+    received_data = request.form['search_data']
+    search_keyword = json.loads(received_data)
+    global search_results
+    global list_breeds
+    global list_sizes
+    global list_genders
+    global list_ages
+    global list_colors
+    global face
+
+    if search_keyword["species"] == "Cat":
+        query = [{k:v} for k,v in search_keyword.items() if v != ""]
+        search_results = list(db_catData.find( {"$and": query }).limit(100))
+        list_breeds = cat_list_breeds
+        list_sizes = cat_list_sizes
+        list_genders = cat_list_genders
+        list_ages = cat_list_ages
+        list_colors = cat_list_colors
+        face = "🐱"
+
+    elif search_keyword["species"] == "Dog":
+        query = [{k:v} for k,v in search_keyword.items() if v != ""]
+        search_results = list(db_dogData.find( {"$and": query }).limit(100))
+
+        list_breeds = dog_list_breeds
+        list_sizes = dog_list_sizes
+        list_genders = dog_list_genders
+        list_ages = dog_list_ages
+        list_colors = dog_list_colors
+        face = "🐶"
+
+    else:
+        pass
+
+    return redirect(url_for("adoptapet"))
+
+
 @app.route("/adoptadog")
 def adoptadog():
     return render_template("adoptapet.html", animals = dog_search_results, list_breeds=dog_list_breeds, list_sizes = dog_list_sizes, list_genders = dog_list_genders, list_ages = dog_list_ages, list_colors = dog_list_colors, face = "🐶"  )
@@ -55,6 +96,11 @@ def adoptadog():
 @app.route("/adoptacat")
 def adoptacat():
     return render_template("adoptapet.html", animals = cat_search_results, list_breeds=cat_list_breeds, list_sizes = cat_list_sizes, list_genders = cat_list_genders, list_ages = cat_list_ages, list_colors = cat_list_colors, face = "🐱" )
+
+@app.route("/adoptapet")
+def adoptapet():
+    return render_template("adoptapet.html", animals = search_results, list_breeds= list_breeds, list_sizes = list_sizes, list_genders = list_genders, list_ages = list_ages, list_colors = list_colors, face = face )
+
 
 @app.route("/cost")
 def cost():
@@ -69,18 +115,39 @@ def about_dog():
 
     df_dogData = pd.DataFrame(list(db_dogData.find()))
 
-    #dog statistics for chart (plotly)
+     # dog statistics for chart (plotly)
+    #breed_info = df_dogData.groupby("breed")["_id"].count().sort_values(ascending=False)
+    #breed_names = list(breed_info[0:10].keys())
+    #breed_count = list(breed_info[0:10])
 
-    breed_info = df_dogData.groupby("breed")["_id"].count().sort_values(ascending=False)
-    breed_names = list(breed_info[0:10].keys())
-    breed_count = list(breed_info[0:10])
+    #age_info = df_dogData.groupby("age")["_id"].count()
+    #age_names = list(age_info.keys())
+    #age_count = list(age_info)
+
+    #size_info = df_dogData.groupby("size")["_id"].count()
+    #size_names = list(size_info.keys())
+    #size_count = list(size_info)
+
+    #dog_statistics = [breed_names, breed_count, age_names, age_count, size_names, size_count]
+
+
+
+
+    # dog statistics for chart (Google chart)
+    breed_info = df_dogData.groupby("breed")["_id"].count().sort_values(ascending=False)[0:10]
+    dog_statistics_breed = [['breed', 'Number']] + [[k, int(v)] for k,v in breed_info.items()]
+
     age_info = df_dogData.groupby("age")["_id"].count()
-    age_names = list(age_info.keys())
-    age_count = list(age_info)
+    dog_statistics_age = [['age', 'Number']] + [[k, int(v)] for k,v in age_info.items()]
+
     size_info = df_dogData.groupby("size")["_id"].count()
-    size_names = list(size_info.keys())
-    size_count = list(size_info)
-    dog_statistics = [breed_names, breed_count, age_names, age_count, size_names, size_count]
+    dog_statistics_size = [['size', 'Number']] + [[k, int(v)] for k,v in size_info.items()]
+
+    color_info = df_dogData.groupby("color")["_id"].count()
+    dog_statistics_color = [['color', 'Number']] + [[k, int(v)] for k,v in color_info.items()]
+
+    dog_statistics = [dog_statistics_breed, dog_statistics_age, dog_statistics_size, dog_statistics_color]
+
 
     # data for maps
     US_state_info = df_dogData[df_dogData["contact_country"] == "US"].groupby("contact_state")["_id"].count()
@@ -97,24 +164,42 @@ def about_dog():
 
     return render_template("aboutdogs.html", dog_statistics = dog_statistics, dog_population = dog_population )
 
-
-
 @app.route("/aboutcats")
 def about_cat():
 
     df_catData = pd.DataFrame(list(db_catData.find()))
+    
+    # cat statistics for graphsv (for Plotly)
+    #breed_info = df_catData.groupby("breed")["_id"].count().sort_values(ascending=False)
+    #breed_names = list(breed_info[0:10].keys())
+    #breed_count = list(breed_info[0:10])
 
-# cat statistics for graphsv (for Plotly)
-    breed_info = df_catData.groupby("breed")["_id"].count().sort_values(ascending=False)
-    breed_names = list(breed_info[0:10].keys())
-    breed_count = list(breed_info[0:10])
+    #age_info = df_catData.groupby("age")["_id"].count()
+    #age_names = list(age_info.keys())
+    #age_count = list(age_info)
+
+    #size_info = df_catData.groupby("size")["_id"].count()
+    #size_names = list(size_info.keys())
+    #size_count = list(size_info)
+
+    #cat_statistics = [breed_names, breed_count, age_names, age_count, size_names, size_count]
+
+
+    # cat statistics for chart (Google chart)
+    breed_info = df_catData.groupby("breed")["_id"].count().sort_values(ascending=False)[0:10]
+    cat_statistics_breed = [['breed', 'Number']] + [[k, int(v)] for k,v in breed_info.items()]
+
     age_info = df_catData.groupby("age")["_id"].count()
-    age_names = list(age_info.keys())
-    age_count = list(age_info)
+    cat_statistics_age = [['age', 'Number']] + [[k, int(v)] for k,v in age_info.items()]
+
     size_info = df_catData.groupby("size")["_id"].count()
-    size_names = list(size_info.keys())
-    size_count = list(size_info)
-    cat_statistics = [breed_names, breed_count, age_names, age_count, size_names, size_count]
+    cat_statistics_size = [['size', 'Number']] + [[k, int(v)] for k,v in size_info.items()]
+
+    color_info = df_catData.groupby("color")["_id"].count()
+    cat_statistics_color = [['color', 'Number']] + [[k, int(v)] for k,v in color_info.items()]
+
+    cat_statistics = [cat_statistics_breed, cat_statistics_age, cat_statistics_size, cat_statistics_color]
+
 
     # cat data for maps
     US_state_info = df_catData[df_catData["contact_country"] == "US"].groupby("contact_state")["_id"].count()
